@@ -6,9 +6,9 @@ green=(0,100,0)
 black=(0,0,0)
 red=(255,0,0)
 grey=(69,69,69)
-yellow=(250,253,15)
+yellow=(250,253,15) #испорт библ пайгейм и опрел цветов
 pygame.init()
-window_width,window_height=500,500
+window_width,window_height=500,500 #окно с размером
 screen=pygame.display.set_mode((window_width,window_height))
 class Snake:
     def __init__(self, x, y):
@@ -23,6 +23,7 @@ class Snake:
         self.level=1
         self.running=True
         self.font=pygame.font.SysFont("comicsansms", 20)
+        # определение класса снейк и его методами и свойствами
     def draw(self):
         for element in self.elements:
             pygame.draw.circle(screen, (black), element, self.radius)
@@ -100,6 +101,7 @@ class Food:
                 self.y=random.randint(151,window_height)
             elif self.x>=150 and self.x<=200:
                 self.y=random.randint(1,300)
+                # метод для передвиджения змеи
     def draw(self):
         pygame.draw.rect(screen, red, (self.x, self.y, 10, 10))
 

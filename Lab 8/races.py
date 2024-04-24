@@ -10,12 +10,10 @@ SCORE  = 0
 SURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # установление экрана
 pygame.display.set_caption("Aruka's racer game") #название экрана
 clock = pygame.time.Clock()
-global NUM_OF_COINS
+global NUM_OF_COINS # глобальная переменная для плдсчета кол-во монет
 NUM_OF_COINS=0
 score_font = pygame.font.SysFont("Verdana", 20) #шрифт для счетчиков
 bg = pygame.image.load("AnimatedStreet.png") #background
-
-
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -33,7 +31,7 @@ class Enemy(pygame.sprite.Sprite):
             #генерирование новой позиции для машины
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-
+# определяет класс для машин их поведекние и отображение на экране
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -55,7 +53,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.move_ip(STEP, 0)
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-
+# определяет класс для игрока отображение и поведение
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -72,17 +70,18 @@ class Coin(pygame.sprite.Sprite):
         self.rect.center=(random.randint(30,350),0)
     def draw(self,surface):
         surface.blit(self.image,self.rect)
+        # определяет класс для монет 
 P1 = Player()
 E1 = Enemy()
 C1=Coin()
-
+#обновляет состояние игрока врагов и монет
 enemies = pygame.sprite.Group()
 enemies.add(E1)
 #adding coins to the sprite group
 coins=pygame.sprite.Group()
 coins.add(C1)
 
-while True:
+while True: # игровой цикл начинается
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -99,7 +98,7 @@ while True:
     if pygame.sprite.spritecollideany(P1, enemies):
         pygame.quit()
         sys.exit()
-
+#проверяет столкновение игрока с монетами и срагами и увеличивает счет и завершает игру при столкновении
     SURF.blit(bg, (0, 0))
     score_img = score_font.render('Number of passing cars: '+str(SCORE), True, BLACK)
     coin_score_img=score_font.render('Number of collected coins: '+str(NUM_OF_COINS),True,BLACK)
@@ -110,3 +109,5 @@ while True:
     C1.draw(SURF)
     pygame.display.update()
     clock.tick(FPS)
+    #отображает фон счет и так же количество монет а так жне всехъ врагов игрока и монет на экране
+    #обновляет экран и упраляет частотой кад

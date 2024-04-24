@@ -150,10 +150,11 @@ class TFood:
                 self.y=random.randint(151,window_height)
             elif self.x>=130 and self.x<=240:
                 self.y=random.randint(1,300)
+                #определение класса фуд
     def draw(self):
         pygame.draw.rect(screen, blue, (self.x, self.y,20,20))
-
-snake = Snake(100, 100) #100,100 is the initial position
+# метод для отображние еды на экране
+snake = Snake(100, 100) #100,100 is the initial position объекты змеи и еды
 food1 = Food()
 bfood=BFood()
 tfood=TFood()
